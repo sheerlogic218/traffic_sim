@@ -36,8 +36,10 @@ int main() {
         // Clear the window with black colour
         window.clear(sf::Color::Black);
 
-		float x = getRandomNumber(0, 800);
-		float y = getRandomNumber(0, 600);
+		my_car.update_pos();
+
+		float x = my_car.get_x();
+		float y = my_car.get_y();
 
 		cout << "x: " << x << " y: " << y << endl;
         

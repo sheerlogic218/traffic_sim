@@ -26,6 +26,8 @@ public:
     float get_steering_angle();
     void calculate_acceleration();
     void update_pos();
+	float get_x();
+	float get_y();
 };
 
 #endif

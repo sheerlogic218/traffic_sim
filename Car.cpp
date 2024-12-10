@@ -3,7 +3,7 @@
 #include "Car.h"
 
 // Constant for time step
-extern const float DT = 0.1f;
+extern const float DT = 1.0f;
 
 
 
@@ -63,6 +63,7 @@ void Car::calculate_acceleration() {
 }
 
 void Car::update_pos() {
+    calculate_acceleration();
     coord[0] = 2 * coord[0] - prev_coord[0] + acceleration[0] * DT * DT;
     coord[1] = 2 * coord[1] - prev_coord[1] + acceleration[1] * DT * DT;
     prev_coord[0] = coord[0];
