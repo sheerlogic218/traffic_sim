@@ -19,7 +19,7 @@ class car{
 
     public:
         car(int id, int x, int y, int vx = 0, int vy = 0, int ax = 0, int ay = 0){
-            this.id =id;
+            this->id =id;
             coord[0] = x;
             coord[1] = y;
             velocity[0] = vx;
@@ -29,7 +29,7 @@ class car{
         }
 
         void set_throttle(int throttle){
-            this.throttle = throttle;
+            this->throttle = throttle;
         }
         int get_throttle(){
             return throttle;
@@ -40,7 +40,7 @@ class car{
         }
 
         void set_steering_angle(float steering_angle){
-            this.steering_angle = steering_angle;
+            this->steering_angle = steering_angle;
         }
         float get_steering_angle(){
             return steering_angle;
@@ -69,7 +69,7 @@ class traffic{
         vector <car> cars;
         int number_of_cars;
         traffic(int num){
-            this.number_of_cars = num;
+            this->number_of_cars = num;
             for(int i = 0; i < number_of_cars; i++){
                 car c(i, 0, 0);
                 cars.push_back(c);
