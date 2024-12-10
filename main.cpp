@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "car_file.h"
 using namespace std;
 
 int getRandomNumber(int min, int max)
