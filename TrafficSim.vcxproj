@@ -133,12 +133,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="car_file.h" />
     <ClCompile Include="car_files.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="traffic_sim_gui.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="car_file.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
