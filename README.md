@@ -20,5 +20,5 @@ This project simulates traffic flow in a city using a C++ implementation. The si
 ### 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/traffic-simulation.git
-cd traffic-simulation
+git clone https://github.com/sheerlogic218/traffic_sim.git
+cd traffic_sim
