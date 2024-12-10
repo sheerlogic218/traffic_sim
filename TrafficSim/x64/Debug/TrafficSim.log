@@ -1,0 +1,5 @@
+﻿  car_files.cpp
+  main.cpp
+  traffic_sim_gui.cpp
+  Generating Code...
+LINK : fatal error LNK1104: cannot open file 'gdi32-d.lib'

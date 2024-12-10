@@ -1,0 +1,8 @@
+﻿  car_files.cpp
+  main.cpp
+  traffic_sim_gui.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 30 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  TrafficSim.vcxproj -> C:\Users\ed9ba\source\repos\traffic_sim\x64\Release\TrafficSim.exe
