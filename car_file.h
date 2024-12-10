@@ -1,11 +1,10 @@
-#include <iostream>
 #include <cmath>
 #include <vector>
 
 
 using namespace std;
 
-float dt = 0.1;
+const float DT = 0.1;
 
 class car {
 private:
@@ -56,12 +55,12 @@ public:
 
 
     void update_pos() {
-        coord[0] = 2 * coord[0] - prev_coord[0] + acceleration[0] * dt * dt;
-        coord[1] = 2 * coord[1] - prev_coord[1] + acceleration[1] * dt * dt;
+        coord[0] = 2 * coord[0] - prev_coord[0] + acceleration[0] * DT * DT;
+        coord[1] = 2 * coord[1] - prev_coord[1] + acceleration[1] * DT * DT;
         prev_coord[0] = coord[0];
         prev_coord[1] = coord[1];
-        velocity[0] = (coord[0] - prev_coord[0]) / dt;
-        velocity[1] = (coord[1] - prev_coord[1]) / dt;
+        velocity[0] = (coord[0] - prev_coord[0]) / DT;
+        velocity[1] = (coord[1] - prev_coord[1]) / DT;
     }
 
 };
