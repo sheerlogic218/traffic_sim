@@ -9,13 +9,13 @@ const float DT = 0.1;
 class car {
 private:
     int id;
-    int coord[2];
-    int prev_coord[2];
-    int velocity[2];
-    int acceleration[2];
-    int throttle = 0;   // forwards and backwards acceleration
-    float direction = 0;
-    float steering_angle = 0;   // turns the car
+    float coord[2];
+    float prev_coord[2];
+    float velocity[2];
+    float acceleration[2];
+    float throttle = 0;   // forwards and backwards acceleration
+    float direction = 0.0;
+    float steering_angle = 0.0;   // turns the car
 
 
 public:
