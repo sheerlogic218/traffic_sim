@@ -21,19 +21,36 @@ class car{
             acceleration[1] = ay;
         }
         int throttle = 0;   // forwards and backwards acceleration
-        int turning_direction = 0; // +- 90 degrees, positive is right
+        void set_throttle(int throttle){
+            this.throttle = throttle;
+        }
+        int get_throttle(){
+            return throttle;
+        }
+
+        float direction = 0;
+        float get_direction(){
+            return direction;
+        }
+
+        float steering_angle = 0;   // turns the car
+        void set_steering_angle(float steering_angle){
+            this.steering_angle = steering_angle;
+        }
+        float get_steering_angle(){
+            return steering_angle;
+        }
+
+        
+
+
 
         void calculate_acceleration(){
-            acceleration[0] = throttle*cos(turning_direction);
-            acceleration[1] = throttle*sin(turning_direction);
+            acceleration[0] = throttle*cos(direction);
+            acceleration[1] = throttle*sin(direction);
         }
         
-        void update_direction(){
-            float angle = atan2(velocity[1], velocity[0]);
-            angle += turning_direction;
-            velocity[0] = cos(angle);
-            velocity[1] = sin(angle);
-        }
+
 
         void update_pos(){
             coord[0] = 2*coord[0] - prev_coord[0] + acceleration[0]*dt*dt;
@@ -55,6 +72,6 @@ class traffic{
             for(int i = 0; i < number_of_cars; i++){
                 cars[i] = car(i, 0, 0);
             }
-        }
+        } 
 
 }
