@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 
 float dt = 0.1;
@@ -65,12 +66,13 @@ class car{
 
 class traffic{
     public:
+        vector <car> cars;
         int number_of_cars;
         traffic(int num){
             this.number_of_cars = num;
-            car cars[number_of_cars];
             for(int i = 0; i < number_of_cars; i++){
-                cars[i] = car(i, 0, 0);
+                car c(i, 0, 0);
+                cars.push_back(c);
             }
         } 
 
