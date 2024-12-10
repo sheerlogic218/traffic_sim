@@ -19,6 +19,7 @@ int main() {
     sf::CircleShape shape(10.f);
 
 	Car my_car(1, 0, 0, 0, 0, 0, 0);
+	my_car.set_throttle(0.1);
     
     // Run the program as long as the window is open
     while (window.isOpen())
