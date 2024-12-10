@@ -1,21 +1,24 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "car_file.h"
+#include "Car.h"
+#include "Traffic.h"
+#include "main.h"
 using namespace std;
 
-int getRandomNumber(int min, int max)
+float getRandomNumber(int min, int max)
 {
     static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
-    return static_cast<int>(rand() * fraction * (max - min + 1) + min);
+    return static_cast<float>(rand() * fraction * (max - min + 1) + min);
 }
 
-int main()
-{
+int main() {
     // Create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
     window.setFramerateLimit(60);
 
     sf::CircleShape shape(10.f);
+
+	Car my_car(1, 0, 0, 0, 0, 0, 0);
     
     // Run the program as long as the window is open
     while (window.isOpen())
