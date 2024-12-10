@@ -134,7 +134,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="car_file.h" />
-    <ClCompile Include="car_files.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="traffic_sim_gui.cpp" />
   </ItemGroup>
