@@ -3,6 +3,8 @@
 #include <vector>
 
 
+using namespace std;
+
 float dt = 0.1;
 
 class car{
