@@ -66,16 +66,16 @@ class car{
         
 };
 
-class traffic{
-    public:
-        vector <car> cars;
-        int number_of_cars;
-        traffic(int num){
-            this->number_of_cars = num;
-            for(int i = 0; i < number_of_cars; i++){
-                car c(i, 0, 0);
-                cars.push_back(c);
-            }
-        } 
+class traffic {
+public:
+    vector <car> cars;
+    int number_of_cars;
+    traffic(int num) {
+        this->number_of_cars = num;
+        for (int i = 0; i < number_of_cars; i++) {
+            car c(i, 0, 0);
+            cars.push_back(c);
+        }
+    }
 
-}
+};
