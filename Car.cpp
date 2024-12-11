@@ -85,9 +85,11 @@ float Car::get_x() {
 float Car::get_y() {
     return coord[1];
 }
+
 float Car::get_vx() {
     return velocity[0];
 }
+
 float Car::get_vy() {
     return velocity[1];
 }
