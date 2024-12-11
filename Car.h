@@ -10,11 +10,13 @@ class Car {
     int id;
     float coord[2];
     float prev_coord[2];
+    float temp_coord[2];
     float velocity[2];
     float acceleration[2];
     float throttle;
     float direction;
     float steering_angle;
+    
 
 public:
 	Car(int id, float x, float y);

@@ -3,7 +3,7 @@
 #include "Car.h"
 
 // Constant for time step
-extern const float DT = 0.05f;
+extern const float DT = 0.1f;
 
 
 
@@ -49,7 +49,7 @@ float Car::get_throttle() {
 float Car::get_direction() {
     return direction;
 }
-
+0
 void Car::set_steering_angle(float steering_angle) {
     this->steering_angle = steering_angle;
 }
@@ -68,7 +68,6 @@ void Car::calculate_acceleration() {
 
 void Car::update_pos() {
     calculate_acceleration();
-    float temp_coord[2];
     temp_coord[0] = coord[0];
     temp_coord[1] = coord[1];
     coord[0] = 2 * coord[0] - prev_coord[0] + acceleration[0] * DT * DT;
