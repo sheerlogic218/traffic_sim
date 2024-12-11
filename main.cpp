@@ -60,11 +60,10 @@ float getRandomNumber(int min, int max)
 
 sf::Vector2u WINDOW_SIZE{ 1900, 1000 };
 constexpr unsigned TPS = 60;
-const sf::Time     timePerUpdate = sf::seconds(1.0f / float(TPS));
+const sf::Time timePerUpdate = sf::seconds(1.0f / float(TPS));
 sf::Vector2f TILE_SIZE{ 16.f, 16.f };
 
-struct Tile
-{
+struct Tile {
     sf::RectangleShape shape;
     int x;
     int y;
@@ -81,12 +80,7 @@ int main() {
     window.setFramerateLimit(FRAMERATE);
     window.setPosition(sf::Vector2i{ window.getPosition().x, 0 });
 
-    bool lostFocus = false;
     sf::View view = window.getDefaultView();
-
-    sf::Clock clock;
-    sf::Time timeSinceLastUpdate = sf::Time::Zero;
-    sf::Time FrameTime = sf::seconds(1.f / FRAMERATE);
 
     std::vector<std::vector<Tile>> doubleTileMap;
     for (int y = 0; y < WINDOW_SIZE.y / TILE_SIZE.y; y++) {
@@ -106,6 +100,11 @@ int main() {
         }
     }
 
+    sf::CircleShape car(10.f);
+
+    Car my_car(1, 0, 1, 0, 0, 0, 0);
+    my_car.set_throttle(0.1);
+
     while (window.isOpen()) {
         sf::Event event{};
         while (window.pollEvent(event)) {
@@ -118,50 +117,50 @@ int main() {
                 default: break;
                 }
             }
-            // This is really buggy right now, doesn't work at all
-            if (event.type == sf::Event::Resized) {
-                view.setSize(static_cast<float>(event.size.width), static_cast<float>(event.size.height));
-            }
-            if (event.type == sf::Event::LostFocus) { lostFocus = true; }
-            if (event.type == sf::Event::GainedFocus) { lostFocus = false; }
         }
 
-        if (!lostFocus) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            sf::Vector2f mouseWorldPos = window.mapPixelToCoords(mousePos, view);
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::Vector2f mouseWorldPos = window.mapPixelToCoords(mousePos, view);
 
-            window.setTitle("Mouse Position: (" + std::to_string(int(mouseWorldPos.x / 64.f)) + ", " +
-                std::to_string(int(mouseWorldPos.y / TILE_SIZE.x)) + ")");
+        window.setTitle("Traffic Simulator");
 
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                if (mouseWorldPos.x >= 0 && mouseWorldPos.y >= 0 &&
-                    mouseWorldPos.x < WINDOW_SIZE.x && mouseWorldPos.y < WINDOW_SIZE.y)
-                {
-                    sf::Vector2i position = mousePos;
-                    position.x /= TILE_SIZE.x;
-                    position.y /= TILE_SIZE.y;
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (mouseWorldPos.x >= 0 && mouseWorldPos.y >= 0 &&
+                mouseWorldPos.x < WINDOW_SIZE.x && mouseWorldPos.y < WINDOW_SIZE.y)
+            {
+                sf::Vector2i position = mousePos;
+                position.x /= TILE_SIZE.x;
+                position.y /= TILE_SIZE.y;
 
-                    doubleTileMap[position.y][position.x].shape.setFillColor(ROAD_COLOR);
+                doubleTileMap[position.y][position.x].shape.setFillColor(ROAD_COLOR);
 
-                    doubleTileMap[position.y][position.x].isRoad = true;
-                }
+                doubleTileMap[position.y][position.x].isRoad = true;
             }
+        }
 
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-				if (mouseWorldPos.x >= 0 && mouseWorldPos.y >= 0 &&
-					mouseWorldPos.x < WINDOW_SIZE.x && mouseWorldPos.y < WINDOW_SIZE.y)
-				{
-					sf::Vector2i position = mousePos;
-					position.x /= TILE_SIZE.x;
-					position.y /= TILE_SIZE.y;
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+			if (mouseWorldPos.x >= 0 && mouseWorldPos.y >= 0 &&
+				mouseWorldPos.x < WINDOW_SIZE.x && mouseWorldPos.y < WINDOW_SIZE.y)
+			{
+				sf::Vector2i position = mousePos;
+				position.x /= TILE_SIZE.x;
+				position.y /= TILE_SIZE.y;
 
-					doubleTileMap[position.y][position.x].shape.setFillColor(GRASS_COLOR);
+				doubleTileMap[position.y][position.x].shape.setFillColor(GRASS_COLOR);
 
-					doubleTileMap[position.y][position.x].isRoad = false;
-				}
+				doubleTileMap[position.y][position.x].isRoad = false;
 			}
+		}
 
-        }
+        my_car.update_pos();
+
+        float x = my_car.get_x();
+        float y = my_car.get_y();
+
+        float vx = my_car.get_vx();
+        float vy = my_car.get_vy();
+
+        car.setPosition(x, y);
 
         window.clear();
 
@@ -171,10 +170,11 @@ int main() {
             }
         }
 
+        window.draw(car);
+
         window.setView(window.getDefaultView());
 
         window.display();
     }
-
     return EXIT_SUCCESS;
 }
