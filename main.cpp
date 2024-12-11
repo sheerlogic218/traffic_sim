@@ -22,7 +22,7 @@ struct Tile {
 sf::Vector2u WINDOW_SIZE{ 1900, 1000 };
 constexpr unsigned TPS = 60;
 const sf::Time timePerUpdate = sf::seconds(1.0f / float(TPS));
-sf::Vector2f TILE_SIZE{ 16.f, 16.f };
+sf::Vector2f TILE_SIZE{ 4.f, 4.f };
 
 const sf::Color GRASS_COLOR{ 124, 252, 0, 45 };
 const sf::Color ROAD_COLOR{ 105, 105, 105, 45 };
