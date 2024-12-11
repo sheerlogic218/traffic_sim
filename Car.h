@@ -28,6 +28,8 @@ public:
     void update_pos();
 	float get_x();
 	float get_y();
+    float get_vx();
+    float get_vy();
 };
 
 #endif
