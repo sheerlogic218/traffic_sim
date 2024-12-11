@@ -3,7 +3,7 @@
 #include "Car.h"
 
 // Constant for time step
-extern const float DT = 1.0f;
+extern const float DT = 0.1f;
 
 
 
@@ -60,8 +60,8 @@ float Car::get_steering_angle() {
 void Car::calculate_acceleration() {
     // acceleration[0] = throttle * cos(direction);
     // acceleration[1] = throttle * sin(direction);
-    acceleration[0] = 0.5*coord[1]/sqrt(coord[0]*coord[0]+coord[1]*coord[1]);
-    acceleration[1] = 0.5*coord[0]/sqrt(coord[0]*coord[0]+coord[1]*coord[1]);
+    acceleration[0] = 0.5*coord[1];
+    acceleration[1] = -0.5*coord[0];
 }
 
 void Car::update_pos() {
