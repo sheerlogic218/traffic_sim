@@ -61,8 +61,8 @@ void Car::update_direction() {
 }
  
 void Car::calculate_acceleration() {
-    acceleration[0] = throttle * cos(direction);
-    acceleration[1] = throttle * sin(direction);
+    acceleration[0] = throttle * cos(direction) * cos(steering_angle);
+    acceleration[1] = throttle * sin(direction) * cos(steering_angle);
 }
 
 void Car::update_pos() {
@@ -94,7 +94,6 @@ float Car::get_vx() {
 float Car::get_vy() {
     return velocity[1];
 }
-
 float Car::get_ax() {
     return acceleration[0];
 }
