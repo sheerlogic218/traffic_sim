@@ -1,7 +1,4 @@
 #pragma once
-#ifndef CAR_TRAFFIC_H
-#define CAR_TRAFFIC_H
-
 #include <cmath>
 #include <vector>
 
@@ -33,6 +30,3 @@ public:
     float get_vx();
     float get_vy();
 };
-
-#endif
-

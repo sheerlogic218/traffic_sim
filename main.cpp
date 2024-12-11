@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Car.h"
 #include "Traffic.h"
+
 #include "main.h"
 using namespace std;
 
@@ -11,64 +12,17 @@ float getRandomNumber(int min, int max)
     return static_cast<float>(rand() * fraction * (max - min + 1) + min);
 }
 
-//int main() {
-//    // Create the window
-//    sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-//    window.setFramerateLimit(60);
-//
-//    sf::CircleShape shape(10.f);
-//
-//	Car my_car(1, 0, 1, 0, 0, 0, 0);
-//	my_car.set_throttle(0.1);
-//    
-//    // Run the program as long as the window is open
-//    while (window.isOpen())
-//    {
-//        // Check all the window's events that were triggered since the last iteration of the loop
-//        sf::Event event;
-//        while (window.pollEvent(event))
-//        {
-//            // "close requested" event: we close the window
-//            if (event.type == sf::Event::Closed)
-//                window.close();
-//        }
-//
-//        // Clear the window with black colour
-//        window.clear(sf::Color::Black);
-//
-//		my_car.update_pos();
-//
-//		float x = my_car.get_x();
-//		float y = my_car.get_y();
-//
-//		float vx = my_car.get_vx();
-//		float vy = my_car.get_vy();
-//
-//		cout << "x: " << x << " y: " << y << endl;
-//		cout << "vx: " << vx << " vy: " << vy << endl;
-//        
-//		shape.setPosition(x, y);
-//
-//        window.draw(shape);
-//
-//        // End the current frame
-//        window.display();
-//    }
-//
-//    return 0;
-//}
+struct Tile {
+    sf::RectangleShape shape;
+    int x = 0;
+    int y = 0;
+	bool isRoad = false;
+};
 
 sf::Vector2u WINDOW_SIZE{ 1900, 1000 };
 constexpr unsigned TPS = 60;
 const sf::Time timePerUpdate = sf::seconds(1.0f / float(TPS));
 sf::Vector2f TILE_SIZE{ 16.f, 16.f };
-
-struct Tile {
-    sf::RectangleShape shape;
-    int x;
-    int y;
-	bool isRoad = false;
-};
 
 const sf::Color GRASS_COLOR{ 124, 252, 0, 45 };
 const sf::Color ROAD_COLOR{ 105, 105, 105, 45 };
@@ -79,6 +33,7 @@ int main() {
     sf::RenderWindow window{ sf::VideoMode{WINDOW_SIZE.x,WINDOW_SIZE.y},"" };
     window.setFramerateLimit(FRAMERATE);
     window.setPosition(sf::Vector2i{ window.getPosition().x, 0 });
+    window.setTitle("Traffic Simulator");
 
     sf::View view = window.getDefaultView();
 
@@ -106,51 +61,44 @@ int main() {
     my_car.set_throttle(0.1);
 
     while (window.isOpen()) {
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+        sf::Vector2f mouseWorldPos = window.mapPixelToCoords(mousePos, view);
+
         sf::Event event{};
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed || event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 window.close();
-            if (event.type == sf::Event::KeyPressed) {
+            else if (event.type == sf::Event::KeyPressed) {
                 switch (event.key.code) {
-                case sf::Keyboard::Enter: std::cout << "Enter Pressed\n"; break;
-                case sf::Keyboard::Space: std::cout << "Space Pressed\n"; break;
-                default: break;
+                    case sf::Keyboard::Enter: std::cout << "Enter Pressed\n"; break;
+                    case sf::Keyboard::Space: std::cout << "Space Pressed\n"; break;
+                    default: break;
+                }
+            }
+            else if (event.type == sf::Event::MouseButtonPressed) {
+                if (mouseWorldPos.x >= 0 && mouseWorldPos.y >= 0 && mouseWorldPos.x < WINDOW_SIZE.x && mouseWorldPos.y < WINDOW_SIZE.y) {
+                    sf::Vector2i position = mousePos;
+
+                    position.x /= static_cast<int>(TILE_SIZE.x);
+                    position.y /= static_cast<int>(TILE_SIZE.y);
+
+                    Tile tile = doubleTileMap[position.y][position.x];
+                    switch (event.mouseButton.button) {
+                    case sf::Mouse::Left: {
+                        tile.shape.setFillColor(ROAD_COLOR);
+                        tile.isRoad = true;
+                        break;
+                    }
+                    case sf::Mouse::Right: {
+                        tile.shape.setFillColor(GRASS_COLOR);
+                        tile.isRoad = false;
+                        break;
+                    default: break;
+                    }
+                    }
                 }
             }
         }
-
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-        sf::Vector2f mouseWorldPos = window.mapPixelToCoords(mousePos, view);
-
-        window.setTitle("Traffic Simulator");
-
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            if (mouseWorldPos.x >= 0 && mouseWorldPos.y >= 0 &&
-                mouseWorldPos.x < WINDOW_SIZE.x && mouseWorldPos.y < WINDOW_SIZE.y)
-            {
-                sf::Vector2i position = mousePos;
-                position.x /= TILE_SIZE.x;
-                position.y /= TILE_SIZE.y;
-
-                doubleTileMap[position.y][position.x].shape.setFillColor(ROAD_COLOR);
-
-                doubleTileMap[position.y][position.x].isRoad = true;
-            }
-        }
-
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
-			if (mouseWorldPos.x >= 0 && mouseWorldPos.y >= 0 &&
-				mouseWorldPos.x < WINDOW_SIZE.x && mouseWorldPos.y < WINDOW_SIZE.y)
-			{
-				sf::Vector2i position = mousePos;
-				position.x /= TILE_SIZE.x;
-				position.y /= TILE_SIZE.y;
-
-				doubleTileMap[position.y][position.x].shape.setFillColor(GRASS_COLOR);
-
-				doubleTileMap[position.y][position.x].isRoad = false;
-			}
-		}
 
         my_car.update_pos();
 
