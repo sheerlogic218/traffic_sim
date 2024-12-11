@@ -41,7 +41,11 @@ int main() {
 		float x = my_car.get_x();
 		float y = my_car.get_y();
 
+		float vx = my_car.get_vx();
+		float vy = my_car.get_vy();
+
 		cout << "x: " << x << " y: " << y << endl;
+		cout << "vx: " << vx << " vy: " << vy << endl;
         
 		shape.setPosition(x, y);
 

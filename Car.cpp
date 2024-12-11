@@ -14,13 +14,13 @@ Car::Car(int id, float x, float y) {
     prev_coord[1] = y;
     coord[0] = x;
     coord[1] = y;
-    velocity[0] = 0;
-    velocity[1] = 0;
-    acceleration[0] = 0;
-    acceleration[1] = 0;
-    throttle = 0;   // forwards and backwards acceleration
-    direction = 0;
-    steering_angle = 0;   // turns the car
+    velocity[0] = 0.0;
+    velocity[1] = 0.0;
+    acceleration[0] = 0.0;
+    acceleration[1] = 0.0;
+    throttle = 0.0;   // forwards and backwards acceleration
+    direction = 0.0;
+    steering_angle = 0.0;   // turns the car
 }
 
 Car::Car(int id, float x, float y, float vx, float vy, float ax, float ay) {
