@@ -1,6 +1,6 @@
 ﻿  main.cpp
 C:\Users\ed9ba\source\repos\traffic_sim\main.cpp(61,25): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\ed9ba\source\repos\traffic_sim\main.cpp(113,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\ed9ba\source\repos\traffic_sim\main.cpp(62,28): warning C4305: 'argument': truncation from 'double' to 'float'
 TrafficSim\x64\Release\Traffic.obj : warning LNK4042: object specified more than once; extras ignored
   Generating code
   1 of 246 functions ( 0.4%) were compiled, the rest were copied from previous compilation.

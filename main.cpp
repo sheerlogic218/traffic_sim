@@ -59,7 +59,7 @@ int main() {
 
     Car my_car(1, 500, 400, 0, 0, 0, 0);
     my_car.set_throttle(0.1);
-	my_car.set_steering_angle(700);
+	my_car.set_steering_angle(0.1);
 
     while (window.isOpen()) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -109,8 +109,6 @@ int main() {
 
         float vx = my_car.get_vx();
         float vy = my_car.get_vy();
-
-        car.setRadius(0.05 * (800 - y));
 
         car.setPosition(x, y);
 
