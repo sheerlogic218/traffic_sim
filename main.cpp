@@ -37,7 +37,7 @@ int main() {
 
     sf::View view = window.getDefaultView();
 
-    std::vector<std::vector<Tile>> doubleTileMap;
+    vector<vector<Tile>> doubleTileMap;
     for (int y = 0; y < WINDOW_SIZE.y / TILE_SIZE.y; y++) {
         for (int x = 0; x < WINDOW_SIZE.x / TILE_SIZE.x; x++) {
             doubleTileMap.emplace_back();
@@ -71,8 +71,8 @@ int main() {
                 window.close();
             else if (event.type == sf::Event::KeyPressed) {
                 switch (event.key.code) {
-                    case sf::Keyboard::Enter: std::cout << "Enter Pressed\n"; break;
-                    case sf::Keyboard::Space: std::cout << "Space Pressed\n"; break;
+                    case sf::Keyboard::Enter: cout << "Enter Pressed\n"; break;
+                    case sf::Keyboard::Space: cout << "Space Pressed\n"; break;
                     default: break;
                 }
             }
@@ -112,9 +112,14 @@ int main() {
 
         car.setPosition(x, y);
 
+		// Log acceleration
+		cout << "Acceleration: " << my_car.get_x() << ", " << my_car.get_y() << endl;
+        // Log direction
+		cout << "Direction: " << my_car.get_direction() << endl;
+
         window.clear();
 
-        for (std::vector<Tile>& index : doubleTileMap) {
+        for (vector<Tile>& index : doubleTileMap) {
             for (Tile& tile : index) {
                 window.draw(tile.shape);
             }
