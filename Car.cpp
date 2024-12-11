@@ -38,7 +38,7 @@ Car::Car(int id, float x, float y, float vx, float vy, float ax, float ay) {
     acceleration[0] = ax;
     acceleration[1] = ay;
     throttle = 0;   // forwards and backwards acceleration
-    direction = 0;
+    direction = 0;  // direction of the car, cw angle from y axis
     steering_angle = 0;   // turns the car
 }
 
@@ -61,12 +61,12 @@ float Car::get_steering_angle() {
 }
 
 void Car::update_direction() {
-    direction += (velocity[0]*velocity[0] + velocity[1]*velocity[1]) * cos(steering_angle);
+    direction += DT * tan(steering_angle) * (velocity[0] * sin(direction) + velocity[1] * cos(direction)) / 2.5;
 }
  
 void Car::calculate_acceleration() {
-    acceleration[0] = throttle * cos(direction) * cos(steering_angle);
-    acceleration[1] = throttle * sin(direction) * cos(steering_angle);
+    acceleration[0] = throttle * sin(direction) * cos(steering_angle);
+    acceleration[1] = throttle * cos(direction) * cos(steering_angle);
 }
 
 void Car::update_pos() {
