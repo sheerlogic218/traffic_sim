@@ -19,7 +19,7 @@ struct Tile {
 	bool isRoad = false;
 };
 
-sf::Vector2u WINDOW_SIZE{ 1900, 1000 };
+sf::Vector2u WINDOW_SIZE{ 1000, 800 };
 constexpr unsigned TPS = 60;
 const sf::Time timePerUpdate = sf::seconds(1.0f / float(TPS));
 sf::Vector2f TILE_SIZE{ 4.f, 4.f };
@@ -57,8 +57,9 @@ int main() {
 
     sf::CircleShape car(10.f);
 
-    Car my_car(1, 0, 1, 0, 0, 0, 0);
+    Car my_car(1, 500, 400, 0, 0, 0, 0);
     my_car.set_throttle(0.1);
+	my_car.set_steering_angle(0.1);
 
     while (window.isOpen()) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
