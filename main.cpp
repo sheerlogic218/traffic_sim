@@ -22,7 +22,7 @@ struct Tile {
 sf::Vector2u WINDOW_SIZE{ 1000, 800 };
 constexpr unsigned TPS = 60;
 const sf::Time timePerUpdate = sf::seconds(1.0f / float(TPS));
-sf::Vector2f TILE_SIZE{ 4.f, 4.f };
+sf::Vector2f TILE_SIZE{ 16.f, 16.f };
 
 const sf::Color GRASS_COLOR{ 124, 252, 0, 45 };
 const sf::Color ROAD_COLOR{ 105, 105, 105, 45 };
@@ -59,7 +59,7 @@ int main() {
 
     Car my_car(1, 500, 400, 0, 0, 0, 0);
     my_car.set_throttle(0.1);
-	my_car.set_steering_angle(0.1);
+	my_car.set_steering_angle(700);
 
     while (window.isOpen()) {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -102,12 +102,15 @@ int main() {
         }
 
         my_car.update_pos();
+        
 
         float x = my_car.get_x();
         float y = my_car.get_y();
 
         float vx = my_car.get_vx();
         float vy = my_car.get_vy();
+
+        car.setRadius(0.05 * (800 - y));
 
         car.setPosition(x, y);
 
