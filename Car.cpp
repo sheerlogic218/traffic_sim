@@ -12,6 +12,7 @@ Car::Car(int id, float x, float y) {
     this->id = id;
     prev_coord[0] = x;
     prev_coord[1] = y;
+    temp_coord = {0.0, 0.0};
     coord[0] = x;
     coord[1] = y;
     velocity[0] = 0.0;
@@ -27,6 +28,7 @@ Car::Car(int id, float x, float y, float vx, float vy, float ax, float ay) {
     this->id = id;
     prev_coord[0] = x -vx * DT;
     prev_coord[1] = y -vy * DT;
+    temp_coord = {0.0, 0.0};
     coord[0] = x;
     coord[1] = y;
     velocity[0] = vx;
@@ -57,7 +59,7 @@ float Car::get_steering_angle() {
 }
 
 void Car::update_direction() {
-    direction += steering_angle * DT;
+    direction = atan2(velocity[1], velocity[0]);
 }
  
 void Car::calculate_acceleration() {
