@@ -94,3 +94,11 @@ float Car::get_vx() {
 float Car::get_vy() {
     return velocity[1];
 }
+
+float Car::get_ax() {
+    return acceleration[0];
+}
+
+float Car::get_ay() {
+    return acceleration[1];
+}

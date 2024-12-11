@@ -30,4 +30,6 @@ public:
 	float get_y();
     float get_vx();
     float get_vy();
+    float get_ax();
+    float get_ay();
 };
