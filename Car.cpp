@@ -61,7 +61,7 @@ void Car::calculate_acceleration() {
     // acceleration[0] = throttle * cos(direction);
     // acceleration[1] = throttle * sin(direction);
     acceleration[0] = 0.5*coord[1];
-    acceleration[1] = -0.5*coord[0];
+    acceleration[1] = 0.5*coord[0];
 }
 
 void Car::update_pos() {
