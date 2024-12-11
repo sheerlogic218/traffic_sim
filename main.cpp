@@ -102,7 +102,6 @@ int main() {
         }
 
         my_car.update_pos();
-        
 
         float x = my_car.get_x();
         float y = my_car.get_y();
