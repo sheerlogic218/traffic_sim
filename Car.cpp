@@ -49,7 +49,6 @@ float Car::get_throttle() {
 float Car::get_direction() {
     return direction;
 }
-0
 void Car::set_steering_angle(float steering_angle) {
     this->steering_angle = steering_angle;
 }
