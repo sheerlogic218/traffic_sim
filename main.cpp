@@ -113,7 +113,7 @@ int main() {
         car.setPosition(x, y);
 
 		// Log acceleration
-		cout << "Acceleration: " << my_car.get_x() << ", " << my_car.get_y() << endl;
+		cout << "Acceleration: " << my_car.get_ax() << ", " << my_car.get_ay() << endl;
         // Log direction
 		cout << "Direction: " << my_car.get_direction() << endl;
 
