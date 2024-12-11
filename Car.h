@@ -23,6 +23,7 @@ public:
     float get_direction();
     void set_steering_angle(float steering_angle);
     float get_steering_angle();
+    void update_direction();
     void calculate_acceleration();
     void update_pos();
 	float get_x();
