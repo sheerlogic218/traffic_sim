@@ -61,7 +61,7 @@ float Car::get_steering_angle() {
 }
 
 void Car::update_direction() {
-    direction += (velocity[0] * sin(steering_angle) - velocity[1] * cos(steering_angle)) * DT;
+    direction += (velocity[0] * sin(steering_angle) + velocity[1] * cos(steering_angle)) * DT;
 }
  
 void Car::calculate_acceleration() {
